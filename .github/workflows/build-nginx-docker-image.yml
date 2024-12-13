@@ -1,0 +1,18 @@
+name: Build Nginx Docker Image
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v4
+    - run: |
+        echo "${GITHUB_WORKSPACE}"
+        echo "${{ github.workspace }}"
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag static-sites-nginx:$(date +%s)
