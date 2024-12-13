@@ -14,5 +14,7 @@ jobs:
     - run: |
         echo "${GITHUB_WORKSPACE}"
         echo "${{ github.workspace }}"
+        pwd 
+        git branch
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag static-sites-nginx:$(date +%s)
